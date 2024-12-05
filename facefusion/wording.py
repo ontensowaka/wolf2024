@@ -12,6 +12,7 @@ WORDING : Dict[str, Any] =\
 	'extracting_frames_failed': 'Extracting frames failed',
 	'analysing': 'Analysing',
 	'processing': 'Processing',
+	'streaming': 'Streaming',
 	'downloading': 'Downloading',
 	'temp_frames_not_found': 'Temporary frames not found',
 	'copying_image': 'Copying image with a resolution of {resolution}',
@@ -46,6 +47,7 @@ WORDING : Dict[str, Any] =\
 	'ui_layout_not_loaded': 'UI layout {ui_layout} could not be loaded',
 	'ui_layout_not_implemented': 'UI layout {ui_layout} not implemented correctly',
 	'stream_not_loaded': 'Stream {stream_mode} could not be loaded',
+	'stream_not_supported': 'Stream not supported',
 	'job_created': 'Job {job_id} created',
 	'job_not_created': 'Job {job_id} not created',
 	'job_submitted': 'Job {job_id} submitted',
@@ -94,10 +96,15 @@ WORDING : Dict[str, Any] =\
 		'skip_conda': 'skip the conda environment check',
 		# paths
 		'config_path': 'choose the config file to override defaults',
+		'temp_path': 'specify the directory for the temporary resources',
 		'jobs_path': 'specify the directory to store jobs',
-		'source_paths': 'choose single or multiple source images or audios',
-		'target_path': 'choose single target image or video',
-		'output_path': 'specify the output image or video within a directory',
+		'source_paths': 'choose the image or audio paths',
+		'target_path': 'choose the image or video path',
+		'output_path': 'specify the image or video within a directory',
+		# patterns
+		'source_pattern': 'choose the image or audio pattern',
+		'target_pattern': 'choose the image or video pattern',
+		'output_pattern': 'specify the image or video pattern',
 		# face detector
 		'face_detector_model': 'choose the model responsible for detecting the faces',
 		'face_detector_size': 'specify the frame size provided to the face detector',
@@ -118,7 +125,7 @@ WORDING : Dict[str, Any] =\
 		'reference_frame_number': 'specify the frame used to create the reference face',
 		# face masker
 		'face_mask_types': 'mix and match different face mask types (choices: {choices})',
-		'face_mask_blur': 'specify the degree of blur applied the box mask',
+		'face_mask_blur': 'specify the degree of blur applied to the box mask',
 		'face_mask_padding': 'apply top, right, bottom and left padding to the box mask',
 		'face_mask_regions': 'choose the facial features used for the region mask (choices: {choices})',
 		# frame extraction
@@ -140,6 +147,8 @@ WORDING : Dict[str, Any] =\
 		'processors': 'load a single or multiple processors (choices: {choices}, ...)',
 		'age_modifier_model': 'choose the model responsible for aging the face',
 		'age_modifier_direction': 'specify the direction in which the age should be modified',
+		'deep_swapper_model': 'choose the model responsible for swapping the face',
+		'deep_swapper_morph': 'morph between source face and target faces',
 		'expression_restorer_model': 'choose the model responsible for restoring the expression',
 		'expression_restorer_factor': 'restore factor of expression from the target face',
 		'face_debugger_items': 'load a single or multiple processors (choices: {choices})',
@@ -160,6 +169,7 @@ WORDING : Dict[str, Any] =\
 		'face_editor_head_roll': 'specify the head roll',
 		'face_enhancer_model': 'choose the model responsible for enhancing the face',
 		'face_enhancer_blend': 'blend the enhanced into the previous face',
+		'face_enhancer_weight': 'specify the degree of weight applied to the face',
 		'face_swapper_model': 'choose the model responsible for swapping the face',
 		'face_swapper_pixel_boost': 'choose the pixel boost resolution for the face swapper',
 		'frame_colorizer_model': 'choose the model responsible for colorizing the frame',
@@ -174,18 +184,21 @@ WORDING : Dict[str, Any] =\
 		'ui_workflow': 'choose the ui workflow',
 		# execution
 		'execution_device_id': 'specify the device used for processing',
-		'execution_providers': 'accelerate the model inference using different providers (choices: {choices}, ...)',
+		'execution_providers': 'inference using different providers (choices: {choices}, ...)',
 		'execution_thread_count': 'specify the amount of parallel threads while processing',
 		'execution_queue_count': 'specify the amount of frames each thread is processing',
+		# download
+		'download_providers': 'download using different providers (choices: {choices}, ...)',
+		'download_scope': 'specify the download scope',
 		# memory
 		'video_memory_strategy': 'balance fast processing and low VRAM usage',
 		'system_memory_limit': 'limit the available RAM that can be used while processing',
 		# misc
-		'skip_download': 'omit downloads and remote lookups',
 		'log_level': 'adjust the message severity displayed in the terminal',
 		# run
 		'run': 'run the program',
 		'headless_run': 'run the program in headless mode',
+		'batch_run': 'run the program in batch mode',
 		'force_download': 'force automate downloads and exit',
 		# jobs
 		'job_id': 'specify the job id',
@@ -223,6 +236,9 @@ WORDING : Dict[str, Any] =\
 		'benchmark_runs_checkbox_group': 'BENCHMARK RUNS',
 		'clear_button': 'CLEAR',
 		'common_options_checkbox_group': 'OPTIONS',
+		'download_providers_checkbox_group': 'DOWNLOAD PROVIDERS',
+		'deep_swapper_model_dropdown': 'DEEP SWAPPER MODEL',
+		'deep_swapper_morph_slider': 'DEEP SWAPPER MORPH',
 		'execution_providers_checkbox_group': 'EXECUTION PROVIDERS',
 		'execution_queue_count_slider': 'EXECUTION QUEUE COUNT',
 		'execution_thread_count_slider': 'EXECUTION THREAD COUNT',
@@ -250,6 +266,7 @@ WORDING : Dict[str, Any] =\
 		'face_editor_mouth_smile_slider': 'FACE EDITOR MOUTH SMILE',
 		'face_enhancer_blend_slider': 'FACE ENHANCER BLEND',
 		'face_enhancer_model_dropdown': 'FACE ENHANCER MODEL',
+		'face_enhancer_weight_slider': 'FACE ENHANCER WEIGHT',
 		'face_landmarker_model_dropdown': 'FACE LANDMARKER MODEL',
 		'face_landmarker_score_slider': 'FACE LANDMARKER SCORE',
 		'face_mask_blur_slider': 'FACE MASK BLUR',
